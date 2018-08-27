@@ -13,7 +13,12 @@ Neuron::Neuron() {
 	this->output = 0.0;
 	this->error = 0.0;
 }
-
+Neuron::Neuron(const Neuron &n)
+{
+	this->error=n.error;
+	this->input=n.input;
+	this->output=n.output;
+}
 Neuron::~Neuron() {
 	// TODO Auto-generated destructor stub
 }

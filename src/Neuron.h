@@ -15,6 +15,7 @@ public:
 	double error;
 	Neuron();
 	virtual ~Neuron();
+	Neuron(const Neuron &n);
 };
 
 #endif /* SRC_NEURON_H_ */

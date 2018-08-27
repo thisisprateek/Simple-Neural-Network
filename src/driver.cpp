@@ -16,8 +16,8 @@ int main(){
 	vector<double> featureVector1 = {9,1};
 	vector<double> outputVector1 = {1};
 	//trainDataset.insert(pair<vector<double>, vector<double>>	(featureVector1, outputVector1));
-	trainDataset.insert(make_pair(featureVector1, outputVector1));
-/*	vector<double> featureVector2 = {13,1};
+	 trainDataset.insert(make_pair(featureVector1, outputVector1));
+	/*vector<double> featureVector2 = {13,1};
 	vector<double> outputVector2 = {1};
 	trainDataset.insert(pair<vector<double>, vector<double>>	(featureVector2, outputVector2));
 
@@ -52,10 +52,10 @@ int main(){
 	vector<double> featureVector10 = {34,1};
 	vector<double> outputVector10 = {1};
 	testDataset.insert(pair<vector<double>, vector<double>>	(featureVector10, outputVector10));
-
+ */
 	cout<<"\ndatasets created"<<endl;
 
-	int sizeFeatureVector = sizeof(featureVector1)/sizeof(featureVector1[0]);
+	/*int sizeFeatureVector = sizeof(featureVector1)/sizeof(featureVector1[0]);
 	cout<<"sizeof featureVector = "<<sizeFeatureVector;*/
 	NeuralNetwork *nn = new NeuralNetwork();
 	nn->addInputLayer(2);
@@ -64,15 +64,20 @@ int main(){
 	cout<<"\nHidden Layer Added"<<endl;
 	nn->addHiddenLayer(5);
 	cout<<"\nHidden Layer Added"<<endl;
-	/*nn->addHiddenLayer(5);
-	cout<<"\nHidden Layer Added"<<endl;*/
-	/*nn->addHiddenLayer(6);
-	cout<<"\nHidden Layer Added"<<endl;*/
+	/* nn->addHiddenLayer(5);
+	cout<<"\nHidden Layer Added"<<endl;
+	nn->addHiddenLayer(5);
+	cout<<"\nHidden Layer Added"<<endl;
+	nn->addHiddenLayer(5);
+	cout<<"\nHidden Layer Added"<<endl;  
+	nn->addHiddenLayer(4); */
+	cout<<"\nHidden Layer Added"<<endl;
 	nn->addOutputLayer(1);
-	cout<<"\nOutput Layer Added"<<endl;
+	cout<<"\nOutput Layer Added"<<endl; 
 	cout<<"\nTraining.."<<endl;
-	nn->train(10, trainDataset);
+	nn->train(2, trainDataset);
 	//nn->test(testDataset);
+	delete nn;
 
 	return 0;
 }
