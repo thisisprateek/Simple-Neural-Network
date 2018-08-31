@@ -41,7 +41,7 @@ int main(){
 	vector<double> outputVector7 = {1};
 	trainDataset.insert(pair<vector<double>, vector<double>>	(featureVector7, outputVector7));
 
-	/*vector<double> featureVector8 = {8,1};
+	vector<double> featureVector8 = {8,1};
 	double outputVector8 = {2};
 	testDataset.insert(pair<vector<double>, vector<double>>	(featureVector8, outputVector8));
 
@@ -52,7 +52,7 @@ int main(){
 	vector<double> featureVector10 = {34,1};
 	vector<double> outputVector10 = {1};
 	testDataset.insert(pair<vector<double>, vector<double>>	(featureVector10, outputVector10));
- */
+
 	cout<<"\ndatasets created"<<endl;
 
 	/*int sizeFeatureVector = sizeof(featureVector1)/sizeof(featureVector1[0]);
@@ -75,8 +75,10 @@ int main(){
 	nn->addOutputLayer(1);
 	cout<<"\nOutput Layer Added"<<endl; 
 	cout<<"\nTraining.."<<endl;
-	nn->train(1, trainDataset);
-	//nn->test(testDataset);
+	nn->train(50, trainDataset);
+	cout<<"\nTraining complete";
+	cout<<"\nTesting.."<<endl;
+	nn->test(testDataset);
 	delete nn;
 
 	return 0;

@@ -1,1 +1,2 @@
-prevent double values from being rounding off.
+Check for XOR.
+Implement learning rate and Alpha value.

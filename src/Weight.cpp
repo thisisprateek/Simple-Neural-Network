@@ -36,9 +36,11 @@ Weight::~Weight()
 
 void Weight::initialize()
 {
+	srand(time(0));
 	for (int i = 1; i <= this->connections; i++)
 	{
-		this->weightArray.push_back(2.0 * (rand() - 0.5) * 13);
+		//this->weightArray.push_back(2.0 * (rand() - 0.5) * 13);
+		this->weightArray.push_back(((double)rand()) / RAND_MAX);
 	}
 }
 

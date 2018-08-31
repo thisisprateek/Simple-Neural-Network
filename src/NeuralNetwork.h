@@ -37,7 +37,7 @@ class NeuralNetwork
 	void backPropogate(std::vector<double> &outputVector);
 	void setInput(std::vector<double> &featureVector);
 	//void train(int epochs, std::map <double *, double *> trainData);
-	void train(int epochs, std::multimap<std::vector<double>, std::vector<double>> trainData);
+	void train(int epochs, std::multimap<std::vector<double>, std::vector<double>> &trainData);
 	void test(std::multimap<std::vector<double>, std::vector<double>> &testData);
 
 	virtual ~NeuralNetwork();

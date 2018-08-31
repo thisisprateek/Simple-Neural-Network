@@ -80,7 +80,7 @@ void NeuralNetwork::feedForward()
 				sum += previousLayer->neurons[prevLyrNurnIndx].output * this->weights[k].weightArray[weightIndex];
 			}
 			this->layers[j].neurons[currentNeuronIndex].input = sum;
-			this->layers[j].neurons[currentNeuronIndex].output = tanh(sum);
+			this->layers[j].neurons[currentNeuronIndex].output = sigmoid(sum);
 			std::cout << this->layers[j].neurons[currentNeuronIndex].input << " " << this->layers[j].neurons[currentNeuronIndex].output << std::endl;
 		}
 		previousLayer = &(this->layers[j]);
@@ -107,8 +107,8 @@ void NeuralNetwork::backPropogate(std::vector<double> &outputVector)
 		error += 0.5 * squaredError(outputVector[i], outputLayer->neurons[i].output);
 		/* outputLayer->neurons[i].error = (outputVector[i] - outputLayer->neurons[i].output) * sigmoidDerivative(outputLayer->neurons[i].output);
 		std::cout << " expected error = " << (outputVector[i] - outputLayer->neurons[i].output) * sigmoidDerivative(outputLayer->neurons[i].output); */
-		outputLayer->neurons[i].error = (outputVector[i] - outputLayer->neurons[i].output) * tanhDer(outputLayer->neurons[i].output);
-		std::cout << " expected error = " << (outputVector[i] - outputLayer->neurons[i].output) * tanhDer(outputLayer->neurons[i].output);
+		outputLayer->neurons[i].error = (outputVector[i] - outputLayer->neurons[i].output) * sigmoidDerivative(outputLayer->neurons[i].output);
+		//std::cout << " expected error = " << (outputVector[i] - outputLayer->neurons[i].output) * tanhDer(outputLayer->neurons[i].output);
 		std::cout << " error  = " << outputLayer->neurons[i].error << std::endl;
 	}
 
@@ -177,7 +177,7 @@ void NeuralNetwork::setInput(std::vector<double> &featureVector)
 }
 
 void NeuralNetwork::train(int epochs,
-						  std::multimap<std::vector<double>, std::vector<double>> trainData)
+						  std::multimap<std::vector<double>, std::vector<double>> &trainData)
 {
 	for (int i = 0; i < epochs; i++)
 	{
@@ -186,9 +186,6 @@ void NeuralNetwork::train(int epochs,
 		{
 			std::vector<double> featureVector = itr->first;
 			std::vector<double> outputVector = itr->second;
-			//std::cout<<featureVector.size()<<" "<<outputVector.size()<<std::endl;
-			//std::cout<<"\n"<<*featureVector.begin()<<" "<<*(featureVector.end()-1)<<" "<<*outputVector.begin()<<std::endl;
-			//std::cout<<"\n"<<featureVector[0]<<" "<<featureVector[1]<<" "<<outputVector[0]<<std::endl;
 			std::cout << "\nset input" << std::endl;
 			this->setInput(featureVector);
 			for (auto weightsItr : this->weights)
@@ -219,16 +216,16 @@ void NeuralNetwork::test(
 	{
 		std::vector<double> featureVector = itr->first;
 		std::vector<double> outputVector = itr->second;
-		/*		this->setInput(featureVector);
-		 this->feedForward();
-		 for (int i = 0; i < this->numNeuronsInOutputLayer; i++) {
-		 std::cout << " " << outputVector[i] << std::endl;
-		 }
-		 std::cout << "\t";
-		 Layer outputLayer = *(this->layers.end());
-		 for (int i = 0; i < this->numNeuronsInOutputLayer; i++) {
-		 std::cout << " ";
-		 std::cout << outputLayer.neurons[i].output;
-		 }*/
+		std::cout << "\nsetting input" << std::endl;
+		this->setInput(featureVector);
+		this->feedForward();
+		for (int i = 0; i < this->numNeuronsInOutputLayer; i++)
+		{
+			std::cout << " " << outputVector[i] << std::endl;
+		}
+		std::cout << "\t";
+		Layer *outputLayer = &(this->layers[this->numHiddenLayers + 1]);
+		for(int i = 0; i < outputLayer->numNeurons; i++)
+			std::cout<<"\nComputed output : "<<outputLayer->neurons[i].output<<" actual output : "<<outputVector[i]<<std::endl;
 	}
 }
