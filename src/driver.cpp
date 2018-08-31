@@ -16,21 +16,21 @@ int main(){
 	vector<double> featureVector1 = {9,1};
 	vector<double> outputVector1 = {1};
 	//trainDataset.insert(pair<vector<double>, vector<double>>	(featureVector1, outputVector1));
-	 trainDataset.insert(make_pair(featureVector1, outputVector1));
-	/*vector<double> featureVector2 = {13,1};
+	trainDataset.insert(make_pair(featureVector1, outputVector1));
+	vector<double> featureVector2 = {13,1};
 	vector<double> outputVector2 = {1};
 	trainDataset.insert(pair<vector<double>, vector<double>>	(featureVector2, outputVector2));
 
 	vector<double> featureVector3 = {13,0};
-	vector<double> outputVector3 = {1};
+	vector<double> outputVector3 = {0};
 	trainDataset.insert(pair<vector<double>, vector<double>>	(featureVector3, outputVector3));
 
 	vector<double> featureVector4 = {18,1};
-	vector<double> outputVector4 = {1};
+	vector<double> outputVector4 = {0};
 	trainDataset.insert(pair<vector<double>, vector<double>>	(featureVector4, outputVector4));
 
 	vector<double> featureVector5 = {23,1};
-	vector<double> outputVector5 = {1};
+	vector<double> outputVector5 = {0};
 	trainDataset.insert(pair<vector<double>, vector<double>>	(featureVector5, outputVector5));
 
 	vector<double> featureVector6 = {45,0};
@@ -38,10 +38,10 @@ int main(){
 	trainDataset.insert(pair<vector<double>, vector<double>>	(featureVector6, outputVector6));
 
 	vector<double> featureVector7 = {27,1};
-	vector<double> outputVector7 = {2};
+	vector<double> outputVector7 = {1};
 	trainDataset.insert(pair<vector<double>, vector<double>>	(featureVector7, outputVector7));
 
-	vector<double> featureVector8 = {8,1};
+	/*vector<double> featureVector8 = {8,1};
 	double outputVector8 = {2};
 	testDataset.insert(pair<vector<double>, vector<double>>	(featureVector8, outputVector8));
 
@@ -70,12 +70,12 @@ int main(){
 	cout<<"\nHidden Layer Added"<<endl;
 	nn->addHiddenLayer(5);
 	cout<<"\nHidden Layer Added"<<endl;  
-	nn->addHiddenLayer(4); */
-	cout<<"\nHidden Layer Added"<<endl;
+	nn->addHiddenLayer(4);
+	cout<<"\nHidden Layer Added"<<endl;*/
 	nn->addOutputLayer(1);
 	cout<<"\nOutput Layer Added"<<endl; 
 	cout<<"\nTraining.."<<endl;
-	nn->train(2, trainDataset);
+	nn->train(1, trainDataset);
 	//nn->test(testDataset);
 	delete nn;
 

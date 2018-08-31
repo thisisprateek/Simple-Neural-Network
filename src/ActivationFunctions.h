@@ -12,5 +12,6 @@
 
 double sigmoid(double input);
 double sigmoidDerivative(double input);
+double tanhDer(double input);
 
 #endif /* SRC_ACTIVATIONFUNCTIONS_H_ */

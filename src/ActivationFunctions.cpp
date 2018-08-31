@@ -7,3 +7,7 @@ double sigmoid(double input){
 double sigmoidDerivative(double input){
 	return input * (1 - input);
 }
+
+double tanhDer(double input){
+	return 1 - input * input;
+}
